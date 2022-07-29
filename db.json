@@ -1,0 +1,34 @@
+{
+  "pokemon": [
+    {
+      "id": 1,
+      "name": "bulbasaur",
+      "type": "venenoso"
+    },
+    {
+      "id": 2,
+      "name": "ivysaur",
+      "type": "venenoso"
+    },
+    {
+      "id": 3,
+      "name": "venusaur",
+      "type": "venenoso"
+    },
+    {
+      "id": 4,
+      "name": "charmander",
+      "type": "fogo"
+    },
+    {
+      "id": 5,
+      "name": "charmeleon",
+      "type": "fogo"
+    },
+    {
+      "id": 6,
+      "name": "charizard",
+      "type": "fogo"
+    }
+  ]
+}

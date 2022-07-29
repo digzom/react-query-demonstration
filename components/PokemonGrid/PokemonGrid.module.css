@@ -1,0 +1,36 @@
+.container {
+  display: grid;
+  column-gap: 10px;
+  row-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin: 30px;
+}
+
+.card {
+  display: grid;
+  text-align: center;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: Fira Code;
+  background-color: #3f3f3f;
+  color: white;
+  height: 100%;
+  transition: 300ms;
+}
+
+.card:hover {
+  background-color: #222;
+}
+
+.name {
+  font-size: 16px;
+  padding: 10px;
+  font-weight: 500;
+}
+
+.type {
+  padding: 6px;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
