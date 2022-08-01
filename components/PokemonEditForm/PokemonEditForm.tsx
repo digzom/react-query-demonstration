@@ -1,14 +1,15 @@
 import { UseMutateFunction } from "@tanstack/react-query"
 import React, { FormEvent, useEffect } from "react"
+import useEditPokemon from "../../hooks/useEditPokemon"
 import useGetPokemons from "../../hooks/useGetPokemons"
-import usePostPokemon from "../../hooks/usePostPokemon"
 import { PokemonType, PokemonTypeOptions } from "../../types/pokemon-type"
 import CustomInput from "../CustomInput"
 import styles from "./PokemonForm.module.css"
 
 type FormModalType = {
-  isOpen: boolean
-  handleClose: () => void
+  isModalOpen: boolean
+  handleModalClose: () => void
+  pokemon: PokemonType | undefined
 }
 
 type PostPokemonMutateType = UseMutateFunction<
@@ -23,48 +24,55 @@ interface FormElements extends HTMLFormControlsCollection {
   tipo: HTMLInputElement
 }
 
-const onSubmit = async (
+const onSubmit = (
   event: FormEvent<HTMLFormElement>,
-  postPokemonMutation: PostPokemonMutateType
+  editPokemonMutation: PostPokemonMutateType,
+  pokemonId?: number
 ) => {
   event.preventDefault()
 
   const { nome, tipo } = event.currentTarget.elements as FormElements
 
-  postPokemonMutation({
+  editPokemonMutation({
+    id: pokemonId,
     name: nome.value,
     type: tipo.value as PokemonTypeOptions,
   })
 }
 
-const PokemonForm: React.FC<FormModalType> = ({ isOpen, handleClose }) => {
-  const { mutate, isSuccess } = usePostPokemon()
+const PokemonEditForm: React.FC<FormModalType> = ({
+  isModalOpen,
+  handleModalClose,
+  pokemon,
+}) => {
+  const { mutate, isSuccess } = useEditPokemon()
   const { refetch } = useGetPokemons()
 
   useEffect(() => {
     const closeOnEscapeKey = (e: KeyboardEvent) =>
-      e.key === "Escape" ? handleClose() : null
+      e.key === "Escape" ? handleModalClose() : null
     document.body.addEventListener("keydown", closeOnEscapeKey)
+
     return () => {
       document.body.removeEventListener("keydown", closeOnEscapeKey)
     }
-  }, [handleClose])
+  }, [handleModalClose])
 
-  if (!isOpen) return null
-  if (isSuccess === true) {
+  if (!isModalOpen) return null
+  if (isSuccess) {
     refetch()
-    handleClose()
+    handleModalClose()
   }
 
   return (
     <div className={styles.modal}>
-      <div onClick={handleClose} className={styles.close}>
+      <div onClick={handleModalClose} className={styles.close}>
         fechar
       </div>
       <div className={styles.content}>
-        <form onSubmit={(event) => onSubmit(event, mutate)}>
-          <CustomInput label="nome" />
-          <CustomInput label="tipo" />
+        <form onSubmit={(event) => onSubmit(event, mutate, pokemon?.id)}>
+          <CustomInput label="nome" props={{ defaultValue: pokemon?.name }} />
+          <CustomInput label="tipo" props={{ defaultValue: pokemon?.type }} />
           <CustomInput props={{ type: "submit" }} />
         </form>
       </div>
@@ -72,4 +80,4 @@ const PokemonForm: React.FC<FormModalType> = ({ isOpen, handleClose }) => {
   )
 }
 
-export default PokemonForm
+export default PokemonEditForm

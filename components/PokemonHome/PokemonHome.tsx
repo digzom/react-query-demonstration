@@ -8,12 +8,11 @@ import PokemonGrid from "../PokemonGrid/PokemonGrid"
 import styles from "./PokemonHome.module.css"
 import { useState } from "react"
 import AddPokemonButton from "../AddPokemonButton"
+import PokemonEditForm from "../PokemonEditForm"
 
 const PokemonTesting = () => {
   const { data: pokemons, isError, isFetching, refetch } = useGetPokemons()
   const [isOpen, setIsOpen] = useState(false)
-
-  const onSubmit = () => {}
 
   if (isError) return <div>houve um erro</div>
 

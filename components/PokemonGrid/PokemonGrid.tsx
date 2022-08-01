@@ -1,6 +1,9 @@
 import { capitalize } from "lodash"
 import Link from "next/link"
+import { useState } from "react"
+import usePostPokemon from "../../hooks/usePostPokemon"
 import { PokemonType, PokemonTypeOptions } from "../../types/pokemon-type"
+import PokemonEditForm from "../PokemonEditForm"
 import styles from "./PokemonGrid.module.css"
 
 type ColorType = { [key in PokemonTypeOptions]: string }
@@ -28,14 +31,22 @@ const getColor = (type: PokemonTypeOptions): string => {
     água: "#6890F0",
   }
 
-  return options[pokemonType] ?? "white"
+  return options[pokemonType] ?? "black"
 }
 
 const PokemonGrid = ({ pokemon }: { pokemon: PokemonType[] }) => {
+  const [editIsOpen, setEditIsOpen] = useState<boolean>(false)
+  const [selectedPokemonId, setSelectedPokemonId] = useState<PokemonType>()
+
   return (
     <div className={styles.container}>
       {pokemon?.map((poke) => (
-        <Link key={poke.name} href={"/pokemon-page"}>
+        <div
+          key={poke.id}
+          onClick={() => {
+            setEditIsOpen(true), setSelectedPokemonId(poke)
+          }}
+        >
           <div className={styles.card}>
             <span className={styles.name}>{capitalize(poke.name)}</span>
             <span
@@ -47,8 +58,13 @@ const PokemonGrid = ({ pokemon }: { pokemon: PokemonType[] }) => {
               {capitalize(poke.type)}
             </span>
           </div>
-        </Link>
+        </div>
       ))}
+      <PokemonEditForm
+        isModalOpen={editIsOpen}
+        handleModalClose={() => setEditIsOpen(false)}
+        pokemon={selectedPokemonId}
+      />
     </div>
   )
 }

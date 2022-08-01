@@ -1,8 +1,10 @@
-import React from "react"
+import React, { DetailedHTMLProps, InputHTMLAttributes } from "react"
 
 interface CustomInputType {
   label?: string
-  props?: Partial<InputEvent>
+  props?: Partial<
+    DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+  >
 }
 
 const CustomInput = ({ label, props }: CustomInputType) => (
@@ -30,6 +32,7 @@ const CustomInput = ({ label, props }: CustomInputType) => (
         fontSize: "30px",
         padding: 7,
         fontFamily: "monospace",
+        borderRadius: 5,
       }}
       {...props}
     />

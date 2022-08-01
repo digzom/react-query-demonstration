@@ -32,7 +32,7 @@
     },
     {
       "name": "Aquamarine",
-      "type": "água",
+      "type": "sombrio",
       "id": 7
     },
     {
@@ -49,6 +49,51 @@
       "name": "Estrelinha",
       "type": "fantasma",
       "id": 11
+    },
+    {
+      "name": "Florzinha",
+      "type": "aço",
+      "id": 12
+    },
+    {
+      "name": "Dickson",
+      "type": "normal",
+      "id": 13
+    },
+    {
+      "name": "xuxa",
+      "type": "fada",
+      "id": 14
+    },
+    {
+      "name": "Dickson",
+      "type": "água",
+      "id": 15
+    },
+    {
+      "name": "Helena",
+      "type": "fantasma",
+      "id": 16
+    },
+    {
+      "name": "Formiguinha",
+      "type": "fogo",
+      "id": 17
+    },
+    {
+      "name": "Bobinha",
+      "type": "água",
+      "id": 18
+    },
+    {
+      "name": "Amanda",
+      "type": "terrestre",
+      "id": 19
+    },
+    {
+      "name": "psiduck",
+      "type": "psíquico",
+      "id": 20
     }
   ]
 }
