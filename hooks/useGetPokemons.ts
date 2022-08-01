@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import { toast } from "react-toastify"
 
 import { PokemonType } from "../types/pokemon-type"
-import fetchPokemons from "../utils/fetchPokemons"
+import fetchPokemons from "../api/fetchPokemons"
 
 const useGetPokemons = () => {
   return useQuery<PokemonType[]>(["poke"], fetchPokemons, {

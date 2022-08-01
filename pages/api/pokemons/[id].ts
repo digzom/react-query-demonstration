@@ -3,7 +3,7 @@ import {
   deletePokemon,
   editPokemon,
   getPokemonWithId,
-} from "../../../services/pokemonsService"
+} from "../../../backendServices/pokemonsService"
 import { PokemonType } from "../../../types/pokemon-type"
 
 export const pokemonIdHandler: NextApiHandler = async (

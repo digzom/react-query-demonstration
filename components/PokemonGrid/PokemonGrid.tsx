@@ -28,7 +28,7 @@ const getColor = (type: PokemonTypeOptions): string => {
     água: "#6890F0",
   }
 
-  return options[pokemonType]
+  return options[pokemonType] ?? "white"
 }
 
 const PokemonGrid = ({ pokemon }: { pokemon: PokemonType[] }) => {

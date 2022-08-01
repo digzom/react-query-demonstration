@@ -1,5 +1,5 @@
 export type PokemonType = {
-  id: number
+  id?: number
   name: string
   type: PokemonTypeOptions
 }

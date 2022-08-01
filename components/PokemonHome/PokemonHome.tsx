@@ -12,26 +12,8 @@ import AddPokemonButton from "../AddPokemonButton"
 const PokemonTesting = () => {
   const { data: pokemons, isError, isFetching, refetch } = useGetPokemons()
   const [isOpen, setIsOpen] = useState(false)
-  // const fetchPokemon = async () => {
-  //   const response = await fetch(`http://localhost:3001/pokemon/`)
 
-  //   const poke = await response.json()
-  //   return poke
-  // }
-
-  // const {
-  //   data: pokemons,
-  //   isLoading,
-  //   isError,
-  //   refetch,
-  // } = useQuery<PokemonType>(["poke"], fetchPokemon, {
-  //   onSuccess: () => toast("Pokemons carregados com sucesso!"),
-  //   onError: () => console.log("houve um erro aqui"),
-  //   enabled: true,
-  //   refetchOnWindowFocus: false,
-  //   useErrorBoundary: true,
-  //   placeholderData: { results: [{ name: "Nenhum pokemon", url: "link" }] },
-  // })
+  const onSubmit = () => {}
 
   if (isError) return <div>houve um erro</div>
 
@@ -47,15 +29,15 @@ const PokemonTesting = () => {
 
   return (
     <div className={styles.container}>
-      <FetchButton text="Fetch Pokemons" onClick={() => refetch()} />
+      <div style={{ display: "flex", columnGap: 20 }}>
+        <FetchButton text="Fetch Pokemons" onClick={() => refetch()} />
+        <AddPokemonButton onClick={() => setIsOpen(true)}>
+          Adicionar Pokemon
+        </AddPokemonButton>
+      </div>
       {!!pokemons && <PokemonGrid pokemon={pokemons} />}
       <ToastContainer autoClose={2000} />
-      <PokemonForm isOpen={isOpen} handleClose={() => setIsOpen(false)}>
-        Modal content
-      </PokemonForm>
-      <AddPokemonButton onClick={() => setIsOpen(true)}>
-        Adicionar Pokemon
-      </AddPokemonButton>
+      <PokemonForm isOpen={isOpen} handleClose={() => setIsOpen(false)} />
     </div>
   )
 }

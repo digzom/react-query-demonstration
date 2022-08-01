@@ -29,6 +29,26 @@
       "id": 6,
       "name": "charizard",
       "type": "fogo"
+    },
+    {
+      "name": "Aquamarine",
+      "type": "água",
+      "id": 7
+    },
+    {
+      "name": "pikachu",
+      "type": "elétrico",
+      "id": 8
+    },
+    {
+      "name": "fadinha",
+      "type": "fada",
+      "id": 9
+    },
+    {
+      "name": "Estrelinha",
+      "type": "fantasma",
+      "id": 11
     }
   ]
 }

@@ -2,8 +2,8 @@ import { NextApiHandler, NextApiRequest, NextApiResponse } from "next"
 import {
   addPokemon,
   getPokemonsService,
-} from "../../../services/pokemonsService"
-import { PokemonType } from "../../../types/pokemon-type"
+} from "../../../backendServices/pokemonsService"
+import { PokemonType, PokemonTypeOptions } from "../../../types/pokemon-type"
 
 const pokemonHandler: NextApiHandler = async (req, res) => {
   if (req.method === "GET") {
@@ -14,9 +14,14 @@ const pokemonHandler: NextApiHandler = async (req, res) => {
 
   if (req.method === "POST") {
     const { id, name, type } = req.body as PokemonType
+    const pokemonType = type.toLowerCase()
 
     try {
-      const pokemon = await addPokemon({ id, name, type })
+      const pokemon = await addPokemon({
+        id,
+        name,
+        type: pokemonType as PokemonTypeOptions,
+      })
 
       res.status(201).json(pokemon)
     } catch (error) {
